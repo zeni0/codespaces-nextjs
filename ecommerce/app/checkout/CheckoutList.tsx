@@ -1,31 +1,18 @@
 "use client"
 
 import { useState } from 'react';
-import { Product } from '../product-data';
+//import { Product } from '../product-data';
 import Link from 'next/link';
 
 
-export default function ShoppingCartList({ initialCartProducts }: { initialCartProducts: Product[] }) {
+export default function CheckoutList({ initialCartProducts }: { initialCartProducts: Product[] }) {
     const [cartProducts, setCartProducts] = useState(initialCartProducts);
-
-    // REMOVE from cart
-    async function removeFromCart(productId: string) {
-        const response = await fetch(process.env.NEXT_PUBLIC_SITE_URL + '/api/users/2/cart', {
-            method: 'DELETE',
-            body: JSON.stringify({
-                productId,
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const updatedCartProducts = await response.json();
-        setCartProducts(updatedCartProducts);
-    }
+    
+    const totalPrice = cartProducts.reduce((acc, product) => acc + product.price, 0);
 
     return (
         <div className="container mx-auto p-8">
-            <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
+            <h1 className="text-4xl font-bold mb-8">Check Out</h1>
 
             <ul className="space-y-4"> {/* List for cart items */}
                 {cartProducts.map(product => (
@@ -43,19 +30,16 @@ export default function ShoppingCartList({ initialCartProducts }: { initialCartP
                             <div class="space-y-0.5">
                                 <h3 className="text-2xl font-bold">{product.name}</h3>
                                 <p>${product.price}</p>
-                                <button className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {
-                                    e.preventDefault();
-                                    removeFromCart(product.id);
-                                }}>Remove from Cart</button>
                             </div>
                         </div>    
                     </Link>
                   </li>
+                  
                 ))}
             </ul>
             {cartProducts.length > 0 && (
                 <p className="p-4">
-                    <Link href='/checkout' className='text-gray-700 hover:text-black hover:underline'>Continue to Check Out</Link>
+                    Total Price: ${totalPrice}
                 </p>
             )}
         </div>

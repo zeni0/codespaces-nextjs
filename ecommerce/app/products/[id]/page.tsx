@@ -13,7 +13,6 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
     }
     
     return (
-        <>
         <div className='container mx-auto p-8 flex flex-col md:flex-row'>
             <div className='md:w-1/2 mb-4 md:mb-0 md:mr-8'>
                 <img 
@@ -28,6 +27,5 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
                 <p className='text-gray-700'>{product.description}</p>
             </div>
         </div>
-        </>
     )
 }

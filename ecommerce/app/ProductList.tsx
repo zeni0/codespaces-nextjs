@@ -57,22 +57,25 @@ export default function ProductList({ products, initialCartProducts = [] }: { pr
                         fill // Fill the container
                         className="object-cover rounded-md" // Cover the container, maintaining aspect ratio 
                     />
-                </div>    
-                    <h2 className="text-xl font-semibold mb-2 text-gray-400 hover:text-black">{product.name}</h2>
-                    <p className="text-gray-600">${product.price}</p>
+                </div>
+                <div class="space-y-2 text-center sm:text-left">
+                    <div class="space-y-0.5">  
+                        <h2 className="text-xl font-semibold mb-2 text-gray-400 hover:text-black">{product.name}</h2>
+                        <p className="text-gray-600">${product.price}</p>
+                    </div>  
                     {productIsInCart(product.id)
                     ? (
-                        <button onClick={(e) => {
+                        <button className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {
                             e.preventDefault();
                             removeFromCart(product.id);
                         }}>Remove from Cart</button>
                     ) : (
-                        <button onClick={(e) => {
+                        <button className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {
                             e.preventDefault();
                             addToCart(product.id);
                         }}>Add to Cart</button>
                     )}
-                    
+                </div>    
                 </Link>
             ))}
         </div>
