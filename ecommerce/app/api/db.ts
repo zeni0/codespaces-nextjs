@@ -24,7 +24,7 @@ export async function connectToDb() {
 
     cachedClient = client;
     cachedDb = client.db('ecommerce-nextjs');
-    console.log(cachedDb)
+    //console.log(cachedDb)
 
     return { client, db: client.db('ecommerce-nextjs') }
 }
