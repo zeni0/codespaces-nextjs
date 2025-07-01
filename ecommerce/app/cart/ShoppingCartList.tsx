@@ -34,13 +34,12 @@ export default function ShoppingCartList({ initialCartProducts }: { initialCartP
                         <div className="relative"> {/* Added height and relative positioning */}    
                             <img src={'/' + product.imageUrl} 
                                 alt="Product image" 
-                                fill // Fill the container
                                 className="rounded-md" // Cover the container, maintaining aspect ratio
                                 width="150" 
                             />
                         </div>
-                        <div class="px-4 text-center sm:text-left">
-                            <div class="space-y-0.5">
+                        <div className="px-4 text-center sm:text-left">
+                            <div className="space-y-0.5">
                                 <h3 className="text-2xl font-bold">{product.name}</h3>
                                 <p>${product.price}</p>
                                 <button className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {
